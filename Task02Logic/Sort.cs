@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task02Logic
 {
-    public class Sort
+    public static class Sort
     {
         public static Book[] SortMethod(Book[] books, IComparer<Book> comparator)
         {
             if (books == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException();
             }
 
             if (comparator == null)
