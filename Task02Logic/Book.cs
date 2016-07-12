@@ -24,7 +24,8 @@ namespace Task02Logic
         public bool Equals(Book other)
         {
             if (other == null) throw new NullReferenceException();
-            return (this.Author == other.Author && this.Title == other.Title);
+            return (this.Author == other.Author && this.Title == other.Title && this.Pages == other.Pages
+                && this.Published == other.Published);
         }
 
         public override bool Equals(object obj)
@@ -36,6 +37,15 @@ namespace Task02Logic
         public override string ToString()
         {
             return $"Author: {this.Author}; Title: {this.Title}; Number of pages: {this.Pages}; Year of publishing: {this.Published}";
+        }
+
+        public override int GetHashCode()
+        {
+            int hashcode = Author.GetHashCode();
+            hashcode = 31*hashcode + Title.GetHashCode();
+            hashcode = 31*hashcode + Pages.GetHashCode();
+            hashcode = 31*hashcode + Published.GetHashCode();
+            return hashcode;
         }
     }
 }
