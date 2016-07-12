@@ -14,9 +14,7 @@ namespace Task02Logic
 
         public int Pages { get; set; }
 
-        public int Pictures { get; set; }
-
-        public int YearOfPublishing { get; set; }
+        public int Published { get; set; }
 
         public int CompareTo(Book other)
         {
@@ -25,7 +23,19 @@ namespace Task02Logic
 
         public bool Equals(Book other)
         {
+            if (other == null) throw new NullReferenceException();
             return (this.Author == other.Author && this.Title == other.Title);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(Book)) throw new ArgumentException();
+            return this.Equals((Book) obj);
+        }
+
+        public override string ToString()
+        {
+            return $"Author: {this.Author}; Title: {this.Title}; Number of pages: {this.Pages}; Year of publishing: {this.Published}";
         }
     }
 }
